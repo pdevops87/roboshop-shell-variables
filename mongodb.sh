@@ -8,7 +8,8 @@ dnf install mongodb-org -y
 
 echo -e "\\e[32m update listen address \\e[0m"
 echo
-sed -i "s/127.0.0.1/0.0.0.0"  /etc/mongod.conf
+sed -i "s/127.0.0.1/0.0.0.0/"  /etc/mongod.conf &>>/tmp/roboshop.log
+
 
 echo -e "\\e[32m start mongod service \\e[0m"
 echo
