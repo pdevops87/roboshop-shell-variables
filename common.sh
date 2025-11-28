@@ -15,7 +15,6 @@ echo -e "\\e[32m add user roboshop \\e[0m"
 echo
 id $user &>>/tmp/roboshop.log
 echo $?
-
 if [ $? -eq 1 ]; then
   echo -e "\\e[34m user not exists \\e[0m"
   useradd ${user} &>>/tmp/roboshop.log
@@ -57,7 +56,7 @@ system_service(){
   echo -e "\\e[32m start service \\e[0m"
   systemctl daemon-reload &>>/tmp/roboshop.log
   systemctl enable $component &>>/tmp/roboshop.log
-  systemctl start $component &>>/tmp/roboshop.log
+  systemctl restart $component &>>/tmp/roboshop.log
 }
 maven(){
 app_prereq
