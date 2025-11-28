@@ -1,5 +1,5 @@
-component=user
-user=roboshop
 source common.sh
+component=user
 app_prereq
+node_depend
 system_service
