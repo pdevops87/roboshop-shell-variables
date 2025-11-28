@@ -1,16 +1,17 @@
+nodejs(){
+  echo -e "\\e[32m Disable nodejs\\e[0m"
+  echo
+  dnf module disable nodejs -y &>>/tmp/roboshop.log
+
+  echo -e "\\e[32m enable nodejs \\e[0m"
+  echo
+  dnf module enable nodejs:20 -y &>>/tmp/roboshop.log
+
+  echo -e "\\e[32m install nodejs \\e[0m"
+  echo
+  dnf install nodejs -y &>>/tmp/roboshop.log
+}
 app_prereq(){
-echo -e "\\e[32m Disable nodejs\\e[0m"
-echo
-dnf module disable nodejs -y &>>/tmp/roboshop.log
-
-echo -e "\\e[32m enable nodejs \\e[0m"
-echo
-dnf module enable nodejs:20 -y &>>/tmp/roboshop.log
-
-echo -e "\\e[32m install nodejs \\e[0m"
-echo
-dnf install nodejs -y &>>/tmp/roboshop.log
-
 echo -e "\\e[32m add user roboshop \\e[0m"
 echo
 id roboshop &>>/tmp/roboshop.log
@@ -79,13 +80,7 @@ schema_mysql(){
 
 python_c(){
   dnf install python3 gcc python3-devel -y
-  useradd $user
-  cp ${component}.service /etc/systemd/system/${component}.service
-  rm -rf /app
-  mkdir /app
-  curl -L -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}-v3.zip
-  cd /app
-  unzip /tmp/${component}.zip
+  app_prereq
   cd /app
   pip3 install -r requirements.txt
 }
