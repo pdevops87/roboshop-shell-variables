@@ -1,5 +1,4 @@
 component=catalogue
-mongodb=mongo
 source common.sh
 mongodb
 app_prereq

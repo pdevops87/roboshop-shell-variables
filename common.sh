@@ -52,8 +52,8 @@ echo
 npm install &>>/tmp/roboshop.log
 }
 mongodb(){
-cp mongo.repo /etc/yum.repos.d/mongo.repo
-dnf install mongodb-mongosh -y
+cp mongo.repo /etc/yum.repos.d/mongo.repo &>>/tmp/roboshop.log
+dnf install mongodb-mongosh -y &>>/tmp/roboshop.log
 }
 
 system_service(){
