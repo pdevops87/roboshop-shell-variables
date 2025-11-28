@@ -1,9 +1,10 @@
 component=catalogue
 mongodb=mongo
 source common.sh
+mongodb
 app_prereq
 node_depend
-mongodb
+mongosh --host mongodb-dev.pdevops78.online </app/db/master-data.js
 system_service
 
 

@@ -51,6 +51,10 @@ echo -e "\\e[32m navigate location \\e[0m"
 echo
 npm install &>>/tmp/roboshop.log
 }
+mongodb(){
+cp mongo.repo /etc/yum.repos.d/mongo.repo
+dnf install mongodb-mongosh -y
+}
 
 system_service(){
   echo -e "\\e[32m start service \\e[0m"
@@ -84,12 +88,6 @@ python_c(){
   unzip /tmp/${component}.zip
   cd /app
   pip3 install -r requirements.txt
-}
-mongodb(){
-cd /app
-cp mongo.repo /etc/yum.repos.d/mongo.repo
-dnf install mongodb-mongosh -y
-mongosh --host mongodb-dev.pdevops78.online </app/db/master-data.js
 }
 
 
