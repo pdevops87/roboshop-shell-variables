@@ -70,8 +70,8 @@ mvn clean package
 mv target/shipping-1.0.jar shipping.jar
 }
 schema_mysql(){
-  maven
   dnf install mysql -y
+  maven
   for loadsql in schema app-user master-data; do
   mysql -h mysql-dev.pdevops78.online -uroot -pRoboShop@1 < /app/db/${loadsql}.sql
   done
