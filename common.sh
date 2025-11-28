@@ -86,7 +86,8 @@ python_c(){
   pip3 install -r requirements.txt
 }
 mongodb(){
-cp $mongodb.repo /etc/yum.repos.d/$mongodb.repo
+cd /app
+cp mongo.repo /etc/yum.repos.d/mongo.repo
 dnf install mongodb-mongosh -y
 mongosh --host mongodb-dev.pdevops78.online </app/db/master-data.js
 }
