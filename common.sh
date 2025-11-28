@@ -14,8 +14,8 @@ dnf install nodejs -y &>>/tmp/roboshop.log
 echo -e "\\e[32m add user roboshop \\e[0m"
 echo
 id roboshop &>>/tmp/roboshop.log
-echo $?
-if [ $? -eq 1 ]; then
+status=$?
+if [ $status -eq 1 ]; then
   echo -e "\\e[34m user not exists \\e[0m"
   useradd roboshop &>>/tmp/roboshop.log
   echo $?
