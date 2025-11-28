@@ -4,7 +4,7 @@ cp mongo.repo /etc/yum.repos.d/mongo.repo
 
 echo -e "\\e[32m install mongo client \\e[0m"
 echo
-dnf install mongodb-org -y
+dnf install mongodb-org -y &>>/tmp/roboshop.log
 
 echo -e "\\e[32m update listen address \\e[0m"
 echo
