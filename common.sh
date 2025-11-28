@@ -15,7 +15,9 @@ echo -e "\\e[32m add user roboshop \\e[0m"
 echo
 id $user &>>/tmp/roboshop.log
 echo $?
+
 if [ $? -eq 1 ]; then
+  echo -e "\\e[34m user not exists \\e[0m"
   useradd ${user} &>>/tmp/roboshop.log
   echo $?
 fi
