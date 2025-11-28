@@ -1,60 +1,61 @@
 app_prereq(){
 echo -e "\\e[32m Disable nodejs\\e[0m"
 echo
-dnf module disable nodejs -y
+dnf module disable nodejs -y &>>/tmp/roboshop.log
 
 echo -e "\\e[32m enable nodejs \\e[0m"
 echo
-dnf module enable nodejs:20 -y
+dnf module enable nodejs:20 -y &>>/tmp/roboshop.log
 
 echo -e "\\e[32m install nodejs \\e[0m"
 echo
-dnf install nodejs -y
+dnf install nodejs -y &>>/tmp/roboshop.log
 
 echo -e "\\e[32m add user roboshop \\e[0m"
 echo
-id $user
+id $user &>>/tmp/roboshop.log
 echo $?
 if [ $? -eq 1 ]; then
-  useradd ${user}
+  useradd ${user} &>>/tmp/roboshop.log
+  echo $?
 fi
 
 echo -e "\\e[32m copy catalogue service"
 echo
-cp ${component}.service /etc/systemd/system/${component}.service
+cp ${component}.service /etc/systemd/system/${component}.service &>>/tmp/roboshop.log
 
 echo -e "\\e[32m remove directory \\e[0m"
 echo
-rm -rf /app
+rm -rf /app &>>/tmp/roboshop.log
 
 echo -e "\\e[32m make a directory \\e[0m"
 echo
-mkdir /app
+mkdir /app &>>/tmp/roboshop.log
 
 echo -e "\\e[32m download content \\e[0m"
 echo
-curl -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}-v3.zip
+curl -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}-v3.zip &>>/tmp/roboshop.log
 
 echo -e "\\e[32m navigate location \\e[0m"
 echo
-cd /app
+cd /app &>>/tmp/roboshop.log
 
 
 echo -e "\\e[32m unarchive content \\e[0m"
 echo
-unzip /tmp/${component}.zip
+unzip /tmp/${component}.zip &>>/tmp/roboshop.log
 }
 node_depend(){
 echo -e "\\e[32m navigate location \\e[0m"
 echo
-npm install
+npm install &>>/tmp/roboshop.log
 }
 
 system_service(){
   echo -e "\\e[32m start service \\e[0m"
-  systemctl daemon-reload
-  systemctl enable $component
-  systemctl start $component
+  systemctl daemon-reload &>>/tmp/roboshop.log
+  systemctl enable $component &>>/tmp/roboshop.log
+  systemctl start $component &>>/tmp/roboshop.log
 }
 maven(){
 app_prereq
